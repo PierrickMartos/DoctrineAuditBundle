@@ -1,4 +1,8 @@
-{% extends "@DHDoctrineAudit/layout.html.twig" %}
+{% extends "@SAMCommon/Layout/_one_column_layout.html.twig" %}
+
+{% block meta_title %}Audit | {{ site_name }}{% endblock %}
+
+{% block page_title %}Audit{% endblock %}
 
 {% macro dump(value, separator) %}
     {% import _self as audit_viewer %}
@@ -21,12 +25,12 @@
 
 {% import _self as audit_viewer %}
 
-{% block dh_doctrine_audit_content %}
+{% block page_content %}
 {% set diffs = entry.getDiffs() %}
     <h1>Entity #{{ entry.getObjectId() }} changes ({{ entry.getType() }})</h1>
 
 {% if entry.getType() in ['associate', 'dissociate'] %}
-    <table>
+    <table class="table">
         <thead>
             <th>Properties</th>
             <th>Target</th>
@@ -41,7 +45,7 @@
         </tbody>
     </table>
 {% elseif entry.getType() == 'remove' %}
-    <table>
+    <table class="table">
         <thead>
             <th>Properties</th>
             <th>Target</th>
@@ -56,7 +60,7 @@
         </tbody>
     </table>
 {% else %}
-    <table>
+    <table class="table">
         <thead>
             <th>Properties</th>
             <th>Old value</th>
